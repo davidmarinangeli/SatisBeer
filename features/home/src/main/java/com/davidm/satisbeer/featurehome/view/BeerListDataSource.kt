@@ -9,7 +9,8 @@ import kotlinx.coroutines.*
 @ExperimentalCoroutinesApi
 class BeerListDataSource(
     coroutineScope: CoroutineScope,
-    private val homeRepository: HomeRepository
+    private val homeRepository: HomeRepository,
+    private val beerName: String?
 ) : PageKeyedDataSource<Int, Beer>() {
 
     private val pageLoaderScope =
@@ -22,7 +23,7 @@ class BeerListDataSource(
         pageLoaderScope.launch {
 
             try {
-                val result = homeRepository.retrieveBeers(params.requestedLoadSize, 1)
+                val result = homeRepository.retrieveBeers(params.requestedLoadSize, 1, beerName)
 
                 callback.onResult(result, null, 2)
 
@@ -40,7 +41,8 @@ class BeerListDataSource(
         pageLoaderScope.launch {
 
             try {
-                val result = homeRepository.retrieveBeers(params.requestedLoadSize, params.key)
+                val result =
+                    homeRepository.retrieveBeers(params.requestedLoadSize, params.key, beerName)
 
                 callback.onResult(
                     result,
@@ -63,7 +65,7 @@ class BeerListDataSource(
             try {
                 val result =
                     withContext(Dispatchers.IO) {
-                        homeRepository.retrieveBeers(params.requestedLoadSize, params.key)
+                        homeRepository.retrieveBeers(params.requestedLoadSize, params.key, beerName)
                     }
                 callback.onResult(
                     result,

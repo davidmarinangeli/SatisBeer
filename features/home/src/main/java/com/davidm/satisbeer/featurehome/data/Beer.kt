@@ -11,7 +11,7 @@ data class Beer(
     @Json(name = "description") val description: String,
     @Json(name = "first_brewed") val firstBrewed: String,
     @Json(name = "food_pairing") val foodPairing: List<String>,
-    @Json(name = "image_url") val imageUrl: String,
+    @Json(name = "image_url") val imageUrl: String? = null,
     @Json(name = "name") val name: String,
     @Json(name = "tagline") val tagLine: String,
 )

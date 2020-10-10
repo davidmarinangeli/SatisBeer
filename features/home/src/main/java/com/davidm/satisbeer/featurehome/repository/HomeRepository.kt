@@ -11,17 +11,15 @@ class HomeRepository @Inject constructor(
 ) {
 
     /**
-     * This method will retrieve a paged list of beers
+     * This will retrieve a paged list of all the available beers
      */
-
     suspend fun retrieveBeers(
         pageSize: Int,
         page: Int,
+        beerName: String? = null
     ): List<Beer> {
-
         return withContext(Dispatchers.IO) {
-            return@withContext homeApi.getPagedBeerList(page, pageSize)
+            return@withContext homeApi.getBeers(beerName, page, pageSize)
         }
-
     }
 }
