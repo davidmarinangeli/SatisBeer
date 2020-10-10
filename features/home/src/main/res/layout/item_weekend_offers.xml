@@ -7,7 +7,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:theme="@style/OffersCardViewStyle"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="?attr/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

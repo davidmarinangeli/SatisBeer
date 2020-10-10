@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FCAF32</color>
-    <color name="colorPrimaryDark">#bb831c</color>
-    <color name="darkSurface">#0E181C</color>
-
-    <!--    <color name="primaryColor">#0e181c</color>-->
-    <!--    <color name="primaryLightColor">#343e43</color>-->
-    <!--    <color name="primaryDarkColor">#000000</color>-->
-    <!--    <color name="secondaryColor">#fcaf32</color>-->
-    <!--    <color name="secondaryLightColor">#ffe165</color>-->
-    <!--    <color name="secondaryDarkColor">#c48000</color>-->
-    <!--    <color name="primaryTextColor">#ffffff</color>-->
-    <!--    <color name="secondaryTextColor">#000000</color>-->
+    <color name="primaryColor">#fcaf32</color>
+    <color name="primaryLightColor">#ffe165</color>
+    <color name="primaryDarkColor">#c48000</color>
+    <color name="primaryTextColor">#0e181c</color>
+    <color name="surfaceColor">#fafafa</color>
+    <color name="colorOnSurface">@android:color/black</color>
 </resources>

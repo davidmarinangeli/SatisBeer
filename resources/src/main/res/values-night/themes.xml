@@ -8,8 +8,9 @@
     </style>
 
     <style name="Theme.SatisBeer" parent="Base.Theme.SatisBeer">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorSurface">@color/darkSurface</item>
+        <item name="colorSurface">@color/surfaceColor</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
     </style>
 </resources>

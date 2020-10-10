@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <color name="darkSurface">#0E181C</color>
+    <color name="primaryColor">#fcaf32</color>
+    <color name="primaryLightColor">#ffe165</color>
+    <color name="primaryDarkColor">#c48000</color>
+    <color name="primaryTextColor">#0e181c</color>
+    <color name="surfaceColor">#0E181C</color>
+    <color name="colorOnSurface">@android:color/white</color>
 </resources>

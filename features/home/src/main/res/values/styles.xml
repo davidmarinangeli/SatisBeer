@@ -1,12 +1,12 @@
 <resources>
 
     <style name="OffersCardViewStyle" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/colorPrimary</item>
+        <item name="cardBackgroundColor">@color/primaryColor</item>
         <item name="cardCornerRadius">?attr/shapeAppearanceMediumComponent</item>
     </style>
 
     <style name="MoreInfoButton" parent="TextAppearance.MaterialComponents.Button">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/primaryColor</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
     </style>

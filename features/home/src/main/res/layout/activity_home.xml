@@ -8,9 +8,31 @@
 
     <!-- Searchbar -->
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/searchbar_background"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/colorOnSurface"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:hint="Search"
+        android:padding="8dp"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
     <include
         android:id="@+id/include"
-        layout="@layout/item_weekend_offers" />
+        layout="@layout/item_weekend_offers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/beerList"
