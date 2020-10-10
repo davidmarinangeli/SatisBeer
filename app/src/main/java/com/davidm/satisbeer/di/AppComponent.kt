@@ -3,7 +3,7 @@ package com.davidm.satisbeer.di
 import android.app.Application
 import com.davidm.satisbeer.SatisBeerApp
 import com.davidm.satisbeer.featurehome.di.ViewModule
-import com.davidm.satisbeer.featurehome.repository.HomeRepositoryModule
+import com.davidm.satisbeer.featurehome.di.HomeRepositoryModule
 import com.davidm.satisbeer.network.di.BaseNetworkModule
 import dagger.BindsInstance
 import dagger.Component

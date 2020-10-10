@@ -1,54 +1,43 @@
 package com.davidm.satisbeer.featurehome.view
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.davidm.satisbeer.featurehome.R
 import com.davidm.satisbeer.featurehome.data.Beer
+import com.davidm.satisbeer.featurehome.databinding.ItemBeerListBinding
+import com.davidm.satisbeer.featurehome.databinding.ItemWeekendOffersBinding
 import com.squareup.picasso.Picasso
 
-class BeerListAdapter : PagedListAdapter<Beer, RecyclerView.ViewHolder>(
-    DiffUtilCallBack()
-) {
+class BeerListAdapter : PagedListAdapter<Beer, RecyclerView.ViewHolder>(DiffUtilCallBack()) {
 
     private val WEEKEND_OFFER_TYPE = 0
     private val LIST_ITEM_TYPE = 1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        lateinit var view: View
-
         return if (viewType == WEEKEND_OFFER_TYPE) {
-            view = LayoutInflater.from(parent.context).inflate(R.layout.item_weekend_offers, parent, false);
-            WeekendOfferViewHolder(view)
+            val binding = ItemWeekendOffersBinding.inflate(LayoutInflater.from(parent.context))
+            WeekendOfferViewHolder(binding)
         } else {
-            view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_beer_list, parent, false)
-            ListItemViewHolder(view)
+            val binding = ItemBeerListBinding.inflate(LayoutInflater.from(parent.context))
+            ListItemViewHolder(binding)
         }
 
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
+
+        val item = getItem(position) ?: return
+
+
         if (getItemViewType(position) == WEEKEND_OFFER_TYPE) {
-//            (viewHolder as WeekendOfferViewHolder).title.text =
-//                Resources.getSystem().getText(R.string.weekend_offers_title_text)
-//
-//            viewHolder.subTitle.text =
-//                Resources.getSystem().getText(R.string.weekend_offer_subtitle_text)
+            (viewHolder as WeekendOfferViewHolder).bind(item)
 
         } else {
-
-            getItem(position).let {
-                (viewHolder as ListItemViewHolder).beerName.text = it?.name
-                viewHolder.beerSubtitle.text = it?.tagLine
-                viewHolder.beerDescription.text = it?.description
-                Picasso.get().load(it?.imageUrl).into(viewHolder.beerImage)
-            }
+            (viewHolder as ListItemViewHolder).bind(item)
         }
     }
 
@@ -63,16 +52,31 @@ class BeerListAdapter : PagedListAdapter<Beer, RecyclerView.ViewHolder>(
 
 }
 
-class ListItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val beerName: TextView = view.beerTitle
-    val beerSubtitle: TextView = view.beerSubtitle
-    val beerDescription: TextView = view.beerDescription
-    val beerImage: ImageView = view.beerImage
+class ListItemViewHolder(view: ItemBeerListBinding) : RecyclerView.ViewHolder(view.root) {
+    private val beerName: TextView = view.beerTitle
+    private val beerSubtitle: TextView = view.beerSubtitle
+    private val beerDescription: TextView = view.beerDescription
+    private val beerImage: ImageView = view.beerImage
+
+    fun bind(beer: Beer) {
+        beerName.text = beer.name
+        beerSubtitle.text = beer.tagLine
+        beerDescription.text = beer.description
+        Picasso.get().load(beer.imageUrl).into(beerImage)
+    }
 }
 
-class WeekendOfferViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class WeekendOfferViewHolder(view: ItemWeekendOffersBinding) : RecyclerView.ViewHolder(view.root) {
     val title: TextView = view.weekendOffersTitle
     val subTitle: TextView = view.weekendOffersSubtitle
+
+    fun bind(item: Beer) {
+        //            (viewHolder as WeekendOfferViewHolder).title.text =
+//                Resources.getSystem().getText(R.string.weekend_offers_title_text)
+//
+//            viewHolder.subTitle.text =
+//                Resources.getSystem().getText(R.string.weekend_offer_subtitle_text)
+    }
 }
 
 class DiffUtilCallBack : DiffUtil.ItemCallback<Beer>() {

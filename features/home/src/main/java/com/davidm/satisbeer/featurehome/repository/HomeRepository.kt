@@ -1,7 +1,7 @@
 package com.davidm.satisbeer.featurehome.repository
 
 import com.davidm.satisbeer.featurehome.data.Beer
-import com.davidm.satisbeer.featurehome.network.HomeApi
+import com.davidm.satisbeer.featurehome.repository.network.HomeApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -15,11 +15,12 @@ class HomeRepository @Inject constructor(
      */
 
     suspend fun retrieveBeers(
+        pageSize: Int,
         page: Int,
     ): List<Beer> {
 
         return withContext(Dispatchers.IO) {
-            return@withContext homeApi.getPagedBeerList(page)
+            return@withContext homeApi.getPagedBeerList(page, pageSize)
         }
 
     }

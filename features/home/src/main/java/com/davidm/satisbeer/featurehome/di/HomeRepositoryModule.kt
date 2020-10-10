@@ -1,6 +1,6 @@
-package com.davidm.satisbeer.featurehome.repository
+package com.davidm.satisbeer.featurehome.di
 
-import com.davidm.satisbeer.featurehome.network.HomeApi
+import com.davidm.satisbeer.featurehome.repository.network.HomeApi
 import com.davidm.satisbeer.network.BASE_URL
 import dagger.Module
 import dagger.Provides

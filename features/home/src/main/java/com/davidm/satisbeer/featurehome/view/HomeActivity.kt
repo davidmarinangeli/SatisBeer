@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.davidm.satisbeer.featurehome.databinding.ActivityHomeBinding
 import com.davidm.satisbeer.uicomponents.CustomDividerDecoration
 import dagger.android.AndroidInjection
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 class HomeActivity : AppCompatActivity() {
 
     @Inject
@@ -21,24 +23,14 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        homeViewModel =
-            ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
         val recyclerView = binding.beerList
         val homeAdapter = BeerListAdapter()
 
-        recyclerView.addItemDecoration(
-            CustomDividerDecoration(
-                recyclerView.context
-            )
-        )
-
+        recyclerView.addItemDecoration(CustomDividerDecoration(recyclerView.context))
         recyclerView.adapter = homeAdapter
 
-        homeViewModel.getBeerList().observe(this, {
-            homeAdapter.submitList(it)
-        })
-
-
+        homeViewModel.getBeerList().observe(this, { homeAdapter.submitList(it) })
     }
 }
