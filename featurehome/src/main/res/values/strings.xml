@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="weekend_offer_subtitle_text">Free shipping on orders over 60$</string>
+    <string name="weekend_offers_title_text">Weekend Offers</string>
+</resources>

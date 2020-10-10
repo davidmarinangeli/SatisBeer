@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.Theme.SatisBeer" parent="Theme.MaterialComponents.DayNight">
+        <!-- Your app theme, minus color palette -->
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+    </style>
+
+    <style name="Theme.SatisBeer" parent="Base.Theme.SatisBeer">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSurface">@color/darkSurface</item>
+    </style>
+</resources>

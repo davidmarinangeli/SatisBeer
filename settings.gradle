@@ -1,0 +1,5 @@
+include ':network'
+include ':featurehome'
+include ':resources'
+include ':app'
+rootProject.name = "SatisBeer"

@@ -1,0 +1,12 @@
+<resources>
+
+    <style name="OffersCardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/colorPrimary</item>
+        <item name="cardCornerRadius">?attr/shapeAppearanceMediumComponent</item>
+    </style>
+
+    <style name="Widget.App.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+</resources>
