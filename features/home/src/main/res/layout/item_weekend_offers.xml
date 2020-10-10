@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp">
@@ -26,7 +25,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/giftImage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/weekend_offers_title_text" />
+                android:text="@string/weekend_offers_title_text" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/weekendOffersSubtitle"
@@ -39,7 +38,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/giftImage"
                 app:layout_constraintStart_toStartOf="@+id/weekendOffersTitle"
                 app:layout_constraintTop_toBottomOf="@+id/weekendOffersTitle"
-                tools:text="@string/weekend_offer_subtitle_text" />
+                android:text="@string/weekend_offer_subtitle_text" />
 
             <ImageView
                 android:id="@+id/giftImage"

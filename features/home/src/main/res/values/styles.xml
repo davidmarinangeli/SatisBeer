@@ -5,8 +5,9 @@
         <item name="cardCornerRadius">?attr/shapeAppearanceMediumComponent</item>
     </style>
 
-    <style name="Widget.App.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:minHeight">0dp</item>
+    <style name="MoreInfoButton" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
     </style>
 </resources>

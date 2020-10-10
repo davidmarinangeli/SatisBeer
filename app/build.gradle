@@ -30,9 +30,11 @@ android {
 
 dependencies {
 
-    api project (':resources')
-    api project (':features:home')
-    api project (':libs:network')
+    implementation project (':resources')
+    implementation project (':features:home')
+    implementation project (':libs:network')
+
+    implementation "com.google.android.material:material:$material_version"
 
     // Dagger
     implementation "com.google.dagger:dagger:$dagger_version"
