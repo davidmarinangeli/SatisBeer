@@ -1,6 +1,5 @@
 package com.davidm.satisbeer.featurehome.view
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.davidm.satisbeer.featurehome.R
 import com.davidm.satisbeer.featurehome.data.Beer
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_beer_list.view.*
-import kotlinx.android.synthetic.main.item_weekend_offers.view.*
-
 
 class BeerListAdapter : PagedListAdapter<Beer, RecyclerView.ViewHolder>(
     DiffUtilCallBack()
@@ -27,8 +23,7 @@ class BeerListAdapter : PagedListAdapter<Beer, RecyclerView.ViewHolder>(
         lateinit var view: View
 
         return if (viewType == WEEKEND_OFFER_TYPE) {
-            view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_weekend_offers, parent, false);
+            view = LayoutInflater.from(parent.context).inflate(R.layout.item_weekend_offers, parent, false);
             WeekendOfferViewHolder(view)
         } else {
             view = LayoutInflater.from(parent.context)

@@ -1,5 +1,7 @@
-include ':network'
-include ':featurehome'
-include ':resources'
 include ':app'
+
+include ':libs:network'
+include ':features:home'
+include ':resources'
+
 rootProject.name = "SatisBeer"
