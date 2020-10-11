@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="32dp"
+    app:behavior_hideable="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <ImageView
+        android:id="@+id/bookmarkImage"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="fitStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_icons8_bookmark"
+        app:tint="@color/primaryColor" />
+
+    <ImageView
+        android:id="@+id/beerDetailImage"
+        android:layout_width="64dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="24dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/beerDetailFoodPairing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/beerDetailTitle"
+        tools:src="@drawable/img_test_beer" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/beerDetailTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/beerDetailImage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/beer_title_test_text" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/beerDetailSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/beerDetailTitle"
+        app:layout_constraintTop_toBottomOf="@+id/beerDetailTitle"
+        tools:text="@string/beer_subtitle_test_text" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/beerDetailDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:textAppearance="?attr/textAppearanceBody2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/beerDetailTitle"
+        app:layout_constraintTop_toBottomOf="@+id/beerDetailSubtitle"
+        tools:text="@string/beer_description_text" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/beerDetailFoodPairing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/food_pairing_string"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/beerDetailTitle"
+        app:layout_constraintTop_toBottomOf="@+id/beerDetailDescription" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/beerDetailFoodPairingContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        tools:text="- Little bit of this \n- Little bit of that \n- Cheese, obviously"
+        android:textAppearance="?attr/textAppearanceBody2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/beerDetailTitle"
+        app:layout_constraintTop_toBottomOf="@+id/beerDetailFoodPairing" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

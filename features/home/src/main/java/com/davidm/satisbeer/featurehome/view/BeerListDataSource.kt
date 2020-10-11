@@ -43,7 +43,6 @@ class BeerListDataSource(
             try {
                 val result =
                     homeRepository.retrieveBeers(params.requestedLoadSize, params.key, beerName)
-
                 callback.onResult(
                     result,
                     params.key + 1

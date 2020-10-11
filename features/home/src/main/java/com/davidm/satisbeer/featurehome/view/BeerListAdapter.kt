@@ -1,10 +1,13 @@
 package com.davidm.satisbeer.featurehome.view
 
+import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -32,11 +35,27 @@ class BeerListAdapter : PagedListAdapter<Beer, RecyclerView.ViewHolder>(diffUtil
 
         val item = getItem(position) ?: return
         (viewHolder as ListItemViewHolder).bind(item)
+        viewHolder.itemView.setOnClickListener {
+            showBottomSheet(viewHolder.itemView.context, item)
+        }
     }
 
     companion object {
         private val diffUtilCallBack = DiffUtilCallBack()
     }
+}
+
+private fun showBottomSheet(context: Context, item: Beer) {
+    val beerDetailsFragment = BeerDetailsFragment()
+
+    val bundle = Bundle()
+    bundle.putParcelable("key", item)
+    beerDetailsFragment.arguments = bundle
+
+    beerDetailsFragment.show(
+        (context as AppCompatActivity).supportFragmentManager,
+        beerDetailsFragment.tag
+    )
 }
 
 class ListItemViewHolder(view: ItemBeerListBinding) : RecyclerView.ViewHolder(view.root) {

@@ -36,6 +36,7 @@ class HomeActivity : AppCompatActivity() {
         recyclerView.adapter = homeAdapter
 
         homeViewModel.getBeerList().observe(this, { homeAdapter.submitList(it) })
+
         binding.searchBar.addTextChangedListener(
             getDebouncedTextWatcher { homeViewModel.searchForBeer(it) }
         )

@@ -2,4 +2,9 @@
 <resources>
     <string name="weekend_offer_subtitle_text">Free shipping on orders over 60$</string>
     <string name="weekend_offers_title_text">Weekend Offers</string>
+    <string name="beer_description_text">An Imperial Black Belgian Ale aged in old Invergordon Scotch whisky barrels with mountains of raspberries, tayberries and blackberries in each cask. Decadent but light and dry, this beer would make a fantastic base for ageing on pretty much any dark fruit - we used raspberries, tayberries and blackberries beause they were local.</string>
+    <string name="food_pairing_string">Food Pairing:</string>
+    <string name="beer_subtitle_test_text">A Real Bitter Experience.</string>
+    <string name="beer_title_test_text">Sunk Punk</string>
+
 </resources>

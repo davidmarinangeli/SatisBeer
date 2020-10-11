@@ -5,6 +5,8 @@
         <!-- Your app theme, minus color palette -->
         <item name="android:background">?attr/colorSurface</item>
         <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Demo.BottomSheetDialog</item>
+
     </style>
 
     <style name="Theme.SatisBeer" parent="Base.Theme.SatisBeer">

@@ -7,7 +7,6 @@
 
     <com.google.android.material.card.MaterialCardView
         android:theme="@style/OffersCardViewStyle"
-        app:cardBackgroundColor="?attr/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -21,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
-                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_constraintEnd_toStartOf="@+id/giftImage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
