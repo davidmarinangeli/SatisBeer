@@ -6,13 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.davidm.satisbeer.featurehome.data.Beer
 import com.davidm.satisbeer.featurehome.databinding.ItemBeerListBinding
+import com.google.android.material.textview.MaterialTextView
 import com.squareup.picasso.Picasso
 
 class BeerListAdapter : PagedListAdapter<Beer, RecyclerView.ViewHolder>(diffUtilCallBack) {
@@ -35,9 +35,6 @@ class BeerListAdapter : PagedListAdapter<Beer, RecyclerView.ViewHolder>(diffUtil
 
         val item = getItem(position) ?: return
         (viewHolder as ListItemViewHolder).bind(item)
-        viewHolder.itemView.setOnClickListener {
-            showBottomSheet(viewHolder.itemView.context, item)
-        }
     }
 
     companion object {
@@ -59,16 +56,18 @@ private fun showBottomSheet(context: Context, item: Beer) {
 }
 
 class ListItemViewHolder(view: ItemBeerListBinding) : RecyclerView.ViewHolder(view.root) {
-    private val beerName: TextView = view.beerTitle
-    private val beerSubtitle: TextView = view.beerSubtitle
-    private val beerDescription: TextView = view.beerDescription
+    private val beerName: MaterialTextView = view.beerTitle
+    private val beerSubtitle: MaterialTextView = view.beerSubtitle
+    private val beerDescription: MaterialTextView = view.beerDescription
     private val beerImage: ImageView = view.beerImage
+    private val beerButton: MaterialTextView = view.beerMoreInfoButton
 
     fun bind(beer: Beer) {
         beerName.text = beer.name
         beerSubtitle.text = beer.tagLine
         beerDescription.text = beer.description
         Picasso.get().load(beer.imageUrl).into(beerImage)
+        beerButton.setOnClickListener { showBottomSheet(this.itemView.context, beer) }
     }
 }
 
