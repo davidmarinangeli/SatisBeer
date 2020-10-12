@@ -6,5 +6,6 @@
     <string name="food_pairing_string">Food Pairing:</string>
     <string name="beer_subtitle_test_text">A Real Bitter Experience.</string>
     <string name="beer_title_test_text">Sunk Punk</string>
+    <string name="search">Search</string>
 
 </resources>

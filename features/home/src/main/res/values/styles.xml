@@ -1,7 +1,7 @@
 <resources>
 
     <style name="OffersCardViewStyle" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/primaryColor</item>
+        <item name="cardBackgroundColor">#FFFAAA</item>
         <item name="cardCornerRadius">?attr/shapeAppearanceMediumComponent</item>
     </style>
 
