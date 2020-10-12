@@ -1,25 +1,35 @@
 package com.davidm.satisbeer.featurehome.view
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.davidm.satisbeer.featurehome.data.Beer
 import com.davidm.satisbeer.featurehome.repository.HomeRepository
+import com.davidm.satisbeer.featurehome.utils.Dispatchers
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import java.util.*
 import javax.inject.Inject
 
 private const val PAGE_SIZE = 25
 
 @ExperimentalCoroutinesApi
 class HomeViewModel @Inject constructor(
-    private val homeRepository: HomeRepository
+    private val homeRepository: HomeRepository,
+    private val dispatchers: Dispatchers
 ) : ViewModel() {
 
     private val beerListLiveData: MutableLiveData<PagedList<Beer>> = MutableLiveData()
     private var livePagedListInternal: LiveData<PagedList<Beer>>? = null
 
     private val dataSourceObserver = Observer<PagedList<Beer>> { beerListLiveData.postValue(it) }
+    private val scopeViewModel = CoroutineScope(SupervisorJob() + dispatchers.main)
 
     init {
         searchForBeer()
@@ -29,8 +39,9 @@ class HomeViewModel @Inject constructor(
         livePagedListInternal?.removeObserver(dataSourceObserver)
 
         val formattedBeerName = beerName
-            ?.ifEmpty { null }
+            ?.ifBlank { null }
             ?.replace(" ", "_")
+            ?.toLowerCase(Locale.getDefault())
 
         val dataSourceFactory = createDataSourceForBeers(formattedBeerName)
 
@@ -49,6 +60,7 @@ class HomeViewModel @Inject constructor(
     fun getBeerList(): LiveData<PagedList<Beer>> = beerListLiveData
 
     override fun onCleared() {
+        scopeViewModel.cancel()
         livePagedListInternal?.removeObserver(dataSourceObserver)
         super.onCleared()
     }
@@ -60,7 +72,7 @@ class HomeViewModel @Inject constructor(
             override fun create(): DataSource<Int, Beer> {
                 previousDataSource?.invalidate()
 
-                return BeerListDataSource(viewModelScope, homeRepository, beerName)
+                return BeerListDataSource(scopeViewModel, homeRepository, dispatchers, beerName)
                     .also { previousDataSource = it }
             }
         }

@@ -4,17 +4,19 @@ import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.davidm.satisbeer.featurehome.data.Beer
 import com.davidm.satisbeer.featurehome.repository.HomeRepository
+import com.davidm.satisbeer.featurehome.utils.Dispatchers
 import kotlinx.coroutines.*
 
 @ExperimentalCoroutinesApi
 class BeerListDataSource(
     coroutineScope: CoroutineScope,
     private val homeRepository: HomeRepository,
-    private val beerName: String?
+    dispatchers: Dispatchers,
+    private val beerName: String?,
 ) : PageKeyedDataSource<Int, Beer>() {
 
     private val pageLoaderScope =
-        CoroutineScope(coroutineScope.newCoroutineContext(Dispatchers.Main))
+        CoroutineScope(coroutineScope.newCoroutineContext(dispatchers.main))
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -63,9 +65,8 @@ class BeerListDataSource(
 
             try {
                 val result =
-                    withContext(Dispatchers.IO) {
-                        homeRepository.retrieveBeers(params.requestedLoadSize, params.key, beerName)
-                    }
+                    homeRepository.retrieveBeers(params.requestedLoadSize, params.key, beerName)
+
                 callback.onResult(
                     result,
                     if (params.key == 1) null else params.key + 1
