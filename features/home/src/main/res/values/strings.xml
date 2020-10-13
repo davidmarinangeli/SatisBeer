@@ -7,5 +7,7 @@
     <string name="beer_subtitle_test_text">A Real Bitter Experience.</string>
     <string name="beer_title_test_text">Sunk Punk</string>
     <string name="search">Search</string>
+    <string name="beer_toolbar_title">Beer</string>
+    <string name="box_toolbar_title">Box</string>
 
 </resources>

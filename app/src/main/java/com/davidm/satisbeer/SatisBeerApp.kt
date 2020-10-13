@@ -3,25 +3,29 @@ package com.davidm.satisbeer
 import android.app.Application
 import com.davidm.satisbeer.di.AppComponent
 import com.davidm.satisbeer.di.DaggerAppComponent
-import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class SatisBeerApp : Application(), HasAndroidInjector {
+open class SatisBeerApp : Application() {
 
-    lateinit var component: AppComponent
+    lateinit var appComponent: AppComponent
+
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()
-
-        component = DaggerAppComponent.factory()
-                .create(this)
-        component.inject(this)
+        instance = this
+        appComponent = getComponent()
+        appComponent.inject(this)
     }
 
-    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
+    open fun getComponent(): AppComponent {
+        return DaggerAppComponent.create()
+    }
+
+    companion object {
+        lateinit var instance: SatisBeerApp
+    }
 
 }

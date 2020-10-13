@@ -1,7 +1,8 @@
-package com.davidm.satisbeer.di
+package com.davidm.satisbeer
 
-import com.davidm.satisbeer.SatisBeerApp
-import com.davidm.satisbeer.featurehome.di.DispatchersModule
+import HomeActivityTest
+import com.davidm.satisbeer.di.AppComponent
+import com.davidm.satisbeer.di.ViewModelModule
 import com.davidm.satisbeer.featurehome.di.HomeRepositoryModule
 import com.davidm.satisbeer.featurehome.di.ViewModule
 import com.davidm.satisbeer.network.di.BaseNetworkModule
@@ -12,10 +13,11 @@ import javax.inject.Singleton
 @Component(
     modules = [
         HomeRepositoryModule::class, BaseNetworkModule::class,
-        ViewModelModule::class, ViewModule::class, DispatchersModule::class
+        ViewModelModule::class, ViewModule::class, TestDispatchersModule::class
     ]
 )
-interface AppComponent {
-    fun inject(satisBeerApp: SatisBeerApp)
+interface TestAppComponent : AppComponent {
+
+    fun inject(homeActivityTest: HomeActivityTest)
 
 }

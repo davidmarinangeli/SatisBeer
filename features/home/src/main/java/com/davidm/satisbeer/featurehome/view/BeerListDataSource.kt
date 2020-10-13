@@ -23,10 +23,8 @@ class BeerListDataSource(
         callback: LoadInitialCallback<Int, Beer>
     ) {
         pageLoaderScope.launch {
-
             try {
                 val result = homeRepository.retrieveBeers(params.requestedLoadSize, 1, beerName)
-
                 callback.onResult(result, null, 2)
 
             } catch (exception: Exception) {

@@ -1,9 +1,9 @@
 package com.davidm.satisbeer.featurehome.view
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.davidm.satisbeer.featurehome.testutils.CoroutineTestRule
 import com.davidm.satisbeer.featurehome.data.Beer
 import com.davidm.satisbeer.featurehome.repository.HomeRepository
+import com.davidm.satisbeer.featurehome.testutils.CoroutineTestRule
 import com.davidm.satisbeer.featurehome.testutils.getOrAwaitValue
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -40,19 +40,6 @@ class HomeViewModelTest {
 
         coEvery { homeRepository.retrieveBeers(any(), any(), any()) } returns emptyList()
     }
-
-
-    /*
-     * Test cases for search query:
-     *
-     * - null
-     * - " "
-     * - ""
-     * - blonde
-     * - empty, brown, blonde, BLONDE, blank
-     *
-     */
-
 
     @Test
     fun searchBeerNullQuery() {

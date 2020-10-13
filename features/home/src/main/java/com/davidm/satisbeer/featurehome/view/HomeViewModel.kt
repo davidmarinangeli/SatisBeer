@@ -72,7 +72,9 @@ class HomeViewModel @Inject constructor(
             override fun create(): DataSource<Int, Beer> {
                 previousDataSource?.invalidate()
 
-                return BeerListDataSource(scopeViewModel, homeRepository, dispatchers, beerName)
+                return BeerListDataSource(
+                    scopeViewModel, homeRepository, dispatchers, beerName
+                )
                     .also { previousDataSource = it }
             }
         }
