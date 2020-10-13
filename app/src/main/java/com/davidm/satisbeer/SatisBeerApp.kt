@@ -3,10 +3,12 @@ package com.davidm.satisbeer
 import android.app.Application
 import com.davidm.satisbeer.di.AppComponent
 import com.davidm.satisbeer.di.DaggerAppComponent
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-open class SatisBeerApp : Application() {
+open class SatisBeerApp : Application(), HasAndroidInjector {
 
     lateinit var appComponent: AppComponent
 
@@ -21,8 +23,11 @@ open class SatisBeerApp : Application() {
     }
 
     open fun getComponent(): AppComponent {
-        return DaggerAppComponent.create()
+        return DaggerAppComponent.factory()
+            .create(this)
     }
+
+    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 
     companion object {
         lateinit var instance: SatisBeerApp

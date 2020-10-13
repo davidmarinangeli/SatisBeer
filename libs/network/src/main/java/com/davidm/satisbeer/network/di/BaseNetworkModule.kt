@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
 
 @Module
 class BaseNetworkModule {
@@ -27,6 +28,7 @@ class BaseNetworkModule {
     }
 
     @Provides
+    @Singleton
     fun providesOkHttpClient(logger: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(logger)

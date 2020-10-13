@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.davidm.satisbeer.featurehome.databinding.ActivityHomeBinding
 import com.davidm.satisbeer.uicomponents.CustomDividerDecoration
+import dagger.android.AndroidInjection
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
@@ -21,6 +22,7 @@ class HomeActivity : AppCompatActivity() {
     private val mainScope = MainScope()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         binding = ActivityHomeBinding.inflate(layoutInflater)

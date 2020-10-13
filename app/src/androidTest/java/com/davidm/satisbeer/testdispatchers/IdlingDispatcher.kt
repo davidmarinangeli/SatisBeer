@@ -26,8 +26,6 @@ class IdlingDispatcher(
 
     val counter: CountingIdlingResource = CountingIdlingResource("IdlingResource for $this")
 
-    fun isIdle(): Boolean = counter.isIdleNow
-
     override fun dispatch(context: CoroutineContext, block: Runnable) {
 
         val runnable = Runnable {
@@ -38,6 +36,7 @@ class IdlingDispatcher(
                 counter.decrement()
             }
         }
+
         delegate.dispatch(context, runnable)
     }
 

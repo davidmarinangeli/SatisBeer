@@ -2,12 +2,13 @@ package com.davidm.satisbeer.featurehome.repository
 
 import com.davidm.satisbeer.featurehome.data.Beer
 import com.davidm.satisbeer.featurehome.repository.network.HomeApi
-import kotlinx.coroutines.Dispatchers
+import com.davidm.satisbeer.featurehome.utils.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class HomeRepository @Inject constructor(
-    private val homeApi: HomeApi
+    private val homeApi: HomeApi,
+    private val dispatchers: Dispatchers
 ) {
 
     /**
@@ -18,7 +19,7 @@ class HomeRepository @Inject constructor(
         page: Int,
         beerName: String? = null
     ): List<Beer> {
-        return withContext(Dispatchers.IO) {
+        return withContext(dispatchers.io) {
             return@withContext homeApi.getBeers(beerName, page, pageSize)
         }
     }
