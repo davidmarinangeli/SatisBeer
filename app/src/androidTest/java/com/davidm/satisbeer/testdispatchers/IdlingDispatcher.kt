@@ -27,9 +27,9 @@ class IdlingDispatcher(
     val counter: CountingIdlingResource = CountingIdlingResource("IdlingResource for $this")
 
     override fun dispatch(context: CoroutineContext, block: Runnable) {
+        counter.increment()
 
         val runnable = Runnable {
-            counter.increment()
             try {
                 block.run()
             } finally {
