@@ -38,9 +38,9 @@ class HomeActivity : AppCompatActivity() {
 
         homeViewModel.getBeerList().observe(this, { homeAdapter.submitList(it) })
 
-        binding.searchBar.addTextChangedListener(
-            getDebouncedTextWatcher { homeViewModel.searchForBeer(it) }
-        )
+//        binding.searchBar.addTextChangedListener(
+//            getDebouncedTextWatcher { homeViewModel.searchForBeer(it) }
+//        )
     }
 
     private fun getDebouncedTextWatcher(onTextChanged: ((String) -> Unit)): TextWatcher {

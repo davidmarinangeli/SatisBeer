@@ -6,6 +6,7 @@
         <item name="android:background">?attr/colorSurface</item>
         <item name="android:statusBarColor">?attr/colorSurface</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Demo.BottomSheetDialog</item>
+        <item name="actionBarSize">112dp</item>
 
     </style>
 

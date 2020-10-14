@@ -1,10 +1,5 @@
 <resources>
 
-    <style name="OffersCardViewStyle" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">#FFFAAA</item>
-        <item name="cardCornerRadius">?attr/shapeAppearanceMediumComponent</item>
-    </style>
-
     <style name="MoreInfoButton" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:focusable">true</item>
@@ -21,5 +16,15 @@
         <item name="fontFamily">@font/roboto_bold</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="Base.Theme.MaterialComponents.SearchBar">
+        <item name="android:background">@drawable/searchbar_background</item>
+        <item name="android:drawableStart">@drawable/ic_baseline_search_24</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:drawableTint">@color/searchBarIcon</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle2</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
 </resources>

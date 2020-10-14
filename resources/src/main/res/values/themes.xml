@@ -18,7 +18,7 @@
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent
         </item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Demo.BottomSheetDialog</item>
-
+        <item name="actionBarSize">112dp</item>
     </style>
 
     <style name="Theme.SatisBeer" parent="Base.Theme.SatisBeer">
