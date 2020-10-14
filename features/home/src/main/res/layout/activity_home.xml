@@ -39,7 +39,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_bar"
+                android:id="@+id/searchBar"
                 style="@style/Base.Theme.MaterialComponents.SearchBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

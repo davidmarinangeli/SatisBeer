@@ -42,10 +42,6 @@ class HomeActivity : AppCompatActivity() {
 
         homeViewModel.getBeerList().observe(this, {
             homeAdapter.submitList(it)
-
-            if (it.isEmpty()) {
-
-            }
         })
 
         binding.searchBar.addTextChangedListener(

@@ -31,7 +31,7 @@ class BeerListDataSource(
                 callback.onResult(result, null, 2)
 
             } catch (exception: Exception) {
-                Log.e("BeerListDataSource", "loadInitialRedditData", exception)
+                Log.e("BeerListDataSource", "loadInitialBeerList", exception)
             }
 
         }
@@ -52,7 +52,7 @@ class BeerListDataSource(
                 )
 
             } catch (exception: Exception) {
-                Log.e("BeerListDataSource", "loadAfterRedditData", exception)
+                Log.e("BeerListDataSource", "loadAfterBeerList", exception)
             }
 
         }
@@ -75,7 +75,7 @@ class BeerListDataSource(
 
 
             } catch (exception: Exception) {
-                Log.e("BeerListDataSource", "loadBeforeRedditData", exception)
+                Log.e("BeerListDataSource", "loadBeforeBeerList", exception)
             }
         }
     }
