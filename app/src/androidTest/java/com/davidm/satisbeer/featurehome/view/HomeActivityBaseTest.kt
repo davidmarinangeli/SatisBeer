@@ -16,7 +16,7 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4ClassRunner::class)
-class HomeActivityTest {
+class HomeActivityBaseTest {
 
     @ExperimentalCoroutinesApi
     @get:Rule
@@ -24,9 +24,10 @@ class HomeActivityTest {
 
     @Test
     fun homeActivityTest() {
+
         onView(withId(R.id.beerList)).perform(
             RecyclerViewActions.actionOnItemAtPosition<ListItemViewHolder>(
-                0,
+                1,
                 ListViewAction().clickChildViewWithId(R.id.beerMoreInfoButton)
             )
         )
