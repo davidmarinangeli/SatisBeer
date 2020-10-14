@@ -25,7 +25,7 @@ I decided to split the project in more modules because of 1. shorter Build Time 
 The separation has been done feature-based so the app can scale easily feature by feature ( Home, Details, Purchase a Beer, who knows! 😄... ) without any feature affecting
 the others in a sensible way. Plus, it's easier to build an Instant App if we're starting from here!
 
-<img src="https://raw.githubusercontent.com/davidmarinangeli/SatisBeer/master/githubmedia/app_architecture.jpg?token=AEUVVZP2LPAVNMOIMFYZAEK7Q6CZK" width="500"/>
+<img src="https://raw.githubusercontent.com/davidmarinangeli/SatisBeer/master/githubmedia/app_architecture.jpg?token=AEUVVZJQIHGHBLEZVOYI7PS7Q6HPI" width="500"/>
 
 ## UI 🎨
 I tried to use the best pratices for what concerns the UI: The theme is the widely suggested `Theme.MaterialComponents.DayNight.NoActionBar`, that helps the developer creating both a 🌞 Light and 🌑 Dark Theme with the correct
