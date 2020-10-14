@@ -3,6 +3,7 @@ package com.davidm.satisbeer.featurehome.view
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.davidm.satisbeer.featurehome.data.Beer
+import com.davidm.satisbeer.featurehome.data.getDummyBeer
 import com.davidm.satisbeer.featurehome.repository.HomeRepository
 import com.davidm.satisbeer.featurehome.utils.Dispatchers
 import kotlinx.coroutines.*
@@ -24,7 +25,9 @@ class BeerListDataSource(
     ) {
         pageLoaderScope.launch {
             try {
-                val result = homeRepository.retrieveBeers(params.requestedLoadSize, 1, beerName)
+                // add a dummy item to avoid the first item to be hidden
+                val result = mutableListOf(getDummyBeer())
+                result.addAll(homeRepository.retrieveBeers(params.requestedLoadSize, 1, beerName))
                 callback.onResult(result, null, 2)
 
             } catch (exception: Exception) {

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.davidm.satisbeer.featurehome.data.Beer
-import com.davidm.satisbeer.featurehome.data.covertFoodPairingList
+import com.davidm.satisbeer.featurehome.data.convertFoodPairingList
 import com.davidm.satisbeer.featurehome.databinding.BeerDetailBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.squareup.picasso.Picasso
@@ -41,7 +41,7 @@ class BeerDetailsFragment : BottomSheetDialogFragment() {
         Picasso.get().load(beer?.imageUrl).into(binding.beerDetailImage)
 
         if (beer?.foodPairing != null && beer.foodPairing.isNotEmpty()) {
-            binding.beerDetailFoodPairingContent.text = covertFoodPairingList(beer.foodPairing)
+            binding.beerDetailFoodPairingContent.text = convertFoodPairingList(beer.foodPairing)
         } else {
             binding.beerDetailFoodPairing.visibility = View.GONE
             binding.beerDetailFoodPairingContent.visibility = View.GONE

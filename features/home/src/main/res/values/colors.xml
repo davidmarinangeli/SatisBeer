@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="searchBarBackground">#34232C30</color>
-    <color name="searchBarIcon">#4C5051</color>
+    <color name="searchBarItems">#4C5051</color>
 </resources>

@@ -2,16 +2,24 @@ package com.davidm.satisbeer.featurehome.repository
 
 import com.davidm.satisbeer.featurehome.data.Beer
 import com.davidm.satisbeer.featurehome.repository.network.HomeApi
+import com.davidm.satisbeer.featurehome.testutils.CoroutineTestRule
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import junit.framework.Assert.fail
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
 
+@ExperimentalCoroutinesApi
 class HomeRepositoryTest {
+
+    @Rule
+    @JvmField
+    val coroutineTestRule = CoroutineTestRule()
 
     @MockK
     lateinit var homeApi: HomeApi
@@ -22,7 +30,7 @@ class HomeRepositoryTest {
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true)
 
-        homeRepository = HomeRepository(homeApi)
+        homeRepository = HomeRepository(homeApi, coroutineTestRule.dispatcherProvider)
     }
 
     @Test

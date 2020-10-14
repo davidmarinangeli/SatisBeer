@@ -57,10 +57,16 @@ data class Beer(
     }
 }
 
-fun covertFoodPairingList(foodPairing: List<String>): String {
+fun convertFoodPairingList(foodPairing: List<String>): String {
     var foodPairingList = ""
     foodPairing.forEach {
         foodPairingList = "$foodPairingList - $it \n"
     }
     return foodPairingList
+}
+
+fun getDummyBeer(): Beer {
+    return Beer(
+        -1, 0.0, "", "", "", "", emptyList(), "", "", ""
+    )
 }

@@ -1,15 +1,17 @@
 package com.davidm.satisbeer.uicomponents
 
+import android.R
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 
-class CustomDividerDecoration(context: Context) : ItemDecoration() {
+class CustomDividerDecoration(context: Context) :
+    DividerItemDecoration(context, VERTICAL) {
     private val DIVIDER_PADDING = 64
 
-    private val ATTRS = intArrayOf(android.R.attr.listDivider)
+    private val ATTRS = intArrayOf(R.attr.listDivider)
     private var divider: Drawable
 
     init {

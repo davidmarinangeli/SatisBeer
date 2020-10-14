@@ -33,14 +33,24 @@ class HomeActivity : AppCompatActivity() {
         val recyclerView = binding.beerList
         val homeAdapter = BeerListAdapter()
 
-        recyclerView.addItemDecoration(CustomDividerDecoration(recyclerView.context))
+        recyclerView.addItemDecoration(
+            CustomDividerDecoration(
+                recyclerView.context
+            )
+        )
         recyclerView.adapter = homeAdapter
 
-        homeViewModel.getBeerList().observe(this, { homeAdapter.submitList(it) })
+        homeViewModel.getBeerList().observe(this, {
+            homeAdapter.submitList(it)
 
-//        binding.searchBar.addTextChangedListener(
-//            getDebouncedTextWatcher { homeViewModel.searchForBeer(it) }
-//        )
+            if (it.isEmpty()) {
+
+            }
+        })
+
+        binding.searchBar.addTextChangedListener(
+            getDebouncedTextWatcher { homeViewModel.searchForBeer(it) }
+        )
     }
 
     private fun getDebouncedTextWatcher(onTextChanged: ((String) -> Unit)): TextWatcher {
