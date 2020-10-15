@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/davidmarinangeli/SatisBeer/master/githubmedia/search_screenshot.png" width="400"/>  <img src="https://raw.githubusercontent.com/davidmarinangeli/SatisBeer/master/githubmedia/sheet_screenshot.png" width="400"/>
+<img src="https://github.com/davidmarinangeli/SatisBeer/blob/master/githubmedia/search_screenshot.png?raw=true" width="400"/>  <img src="https://raw.githubusercontent.com/davidmarinangeli/SatisBeer/master/githubmedia/sheet_screenshot.png?raw=true" width="400"/>
 
 
 # Satisbeer 🍻
