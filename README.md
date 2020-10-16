@@ -50,4 +50,5 @@ I used some of the most used and common libraries such as:
 
 There are some improvements that I would like to make:
  - Network Errors / Empty list handling - with more time I would like to show the user a message when the retrieved list is empty or there's no connection
+ - List loading animation - a loading animation ( Shimmer maybe ) could be nice to inform the user in case of slow network. 
  - UI polishing - it could be cool to improve the Searchbar feature ( with some UI components such as the "x", an history of searches ... )
