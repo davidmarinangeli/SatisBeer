@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.davidm.satisbeer.featurehome.data.Beer
@@ -16,18 +16,10 @@ import com.davidm.satisbeer.featurehome.databinding.ItemWeekendOffersBinding
 import com.google.android.material.textview.MaterialTextView
 import com.squareup.picasso.Picasso
 
-class BeerListAdapter : PagedListAdapter<Beer, RecyclerView.ViewHolder>(diffUtilCallBack) {
+class BeerListAdapter : PagingDataAdapter<Beer, RecyclerView.ViewHolder>(diffUtilCallBack) {
 
     private val WEEKEND_OFFER_TYPE = 0
     private val LIST_ITEM_TYPE = 1
-
-    init {
-        setHasStableIds(true)
-    }
-
-    override fun getItemId(position: Int): Long {
-        return getItem(position)?.id ?: -1
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 

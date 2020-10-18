@@ -4,13 +4,17 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import com.davidm.satisbeer.featurehome.databinding.ActivityHomeBinding
 import com.davidm.satisbeer.uicomponents.CustomDividerDecoration
 import dagger.android.AndroidInjection
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -49,9 +53,36 @@ class HomeActivity : AppCompatActivity() {
         )
         recyclerView.adapter = homeAdapter
 
-        homeViewModel.getBeerList().observe(this, {
-            homeAdapter.submitList(it)
-        })
+        lifecycleScope.launch {
+            homeViewModel.flow.collectLatest { pagingData ->
+                homeAdapter.submitData(pagingData)
+                //TODO: hide loading
+            }
+        }
+
+        homeAdapter.addLoadStateListener { loadState ->
+
+            if (loadState.refresh is LoadState.Loading ||
+                loadState.append is LoadState.Loading
+            )
+            //TODO: show loading
+            else {
+                //TODO: hide loading
+
+
+                // If we have an error, show a toast
+                val errorState = when {
+                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                    else -> null
+                }
+                errorState?.let {
+                    Toast.makeText(this, it.error.toString(), Toast.LENGTH_LONG).show()
+                }
+
+            }
+        }
 
         binding.searchBar.addTextChangedListener(
             getDebouncedTextWatcher { homeViewModel.searchForBeer(it) }

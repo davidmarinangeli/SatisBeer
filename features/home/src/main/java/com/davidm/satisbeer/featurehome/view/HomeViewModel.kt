@@ -1,13 +1,8 @@
 package com.davidm.satisbeer.featurehome.view
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import androidx.paging.DataSource
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
-import com.davidm.satisbeer.featurehome.data.Beer
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.davidm.satisbeer.featurehome.repository.HomeRepository
 import com.davidm.satisbeer.featurehome.utils.Dispatchers
 import kotlinx.coroutines.CoroutineScope
@@ -25,59 +20,23 @@ class HomeViewModel @Inject constructor(
     private val dispatchers: Dispatchers
 ) : ViewModel() {
 
-    private val beerListLiveData: MutableLiveData<PagedList<Beer>> = MutableLiveData()
-    private var livePagedListInternal: LiveData<PagedList<Beer>>? = null
-
-    private val dataSourceObserver = Observer<PagedList<Beer>> { beerListLiveData.postValue(it) }
+    var flow = Pager(PagingConfig(pageSize = PAGE_SIZE), pagingSourceFactory = {
+        BeerListDataSource(
+            scopeViewModel, homeRepository, dispatchers, null
+        )
+    }).flow
     private val scopeViewModel = CoroutineScope(SupervisorJob() + dispatchers.main)
 
-    init {
-        searchForBeer()
-    }
-
     fun searchForBeer(beerName: String? = null) {
-        livePagedListInternal?.removeObserver(dataSourceObserver)
-
         val formattedBeerName = beerName
             ?.ifBlank { null }
             ?.replace(" ", "_")
             ?.toLowerCase(Locale.getDefault())
-
-        val dataSourceFactory = createDataSourceForBeers(formattedBeerName)
-
-        val config = PagedList.Config.Builder()
-            .setPageSize(PAGE_SIZE)
-            .setEnablePlaceholders(false)
-            .build()
-
-        livePagedListInternal = LivePagedListBuilder(dataSourceFactory, config)
-            .setInitialLoadKey(1)
-            .build().also {
-                it.observeForever(dataSourceObserver)
-            }
     }
-
-    fun getBeerList(): LiveData<PagedList<Beer>> = beerListLiveData
 
     override fun onCleared() {
         scopeViewModel.cancel()
-        livePagedListInternal?.removeObserver(dataSourceObserver)
         super.onCleared()
-    }
-
-    private fun createDataSourceForBeers(beerName: String? = null): DataSource.Factory<Int, Beer> {
-        return object : DataSource.Factory<Int, Beer>() {
-            private var previousDataSource: BeerListDataSource? = null
-
-            override fun create(): DataSource<Int, Beer> {
-                previousDataSource?.invalidate()
-
-                return BeerListDataSource(
-                    scopeViewModel, homeRepository, dispatchers, beerName
-                )
-                    .also { previousDataSource = it }
-            }
-        }
     }
 
 }
