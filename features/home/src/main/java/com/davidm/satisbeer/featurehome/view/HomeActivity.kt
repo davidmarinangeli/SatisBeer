@@ -54,7 +54,7 @@ class HomeActivity : AppCompatActivity() {
         recyclerView.adapter = homeAdapter
 
         lifecycleScope.launch {
-            homeViewModel.flow.collectLatest { pagingData ->
+            homeViewModel.getBeerList()?.collectLatest { pagingData ->
                 homeAdapter.submitData(pagingData)
                 //TODO: hide loading
             }
