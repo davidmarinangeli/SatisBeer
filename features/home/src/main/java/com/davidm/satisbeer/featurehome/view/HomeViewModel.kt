@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.davidm.satisbeer.featurehome.data.Beer
 import com.davidm.satisbeer.featurehome.repository.HomeRepository
 import com.davidm.satisbeer.featurehome.utils.Dispatchers
@@ -40,7 +41,7 @@ class HomeViewModel @Inject constructor(
 
         val dataSourceFactory = createDataSourceForBeers(formattedBeerName)
 
-        livePagedListInternal = dataSourceFactory.flow.asLiveData()
+        livePagedListInternal = dataSourceFactory.flow.asLiveData().cachedIn(scopeViewModel)
     }
 
     private fun createDataSourceForBeers(beerName: String? = null): Pager<Int, Beer> {

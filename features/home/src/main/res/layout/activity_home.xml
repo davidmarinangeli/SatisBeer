@@ -43,7 +43,7 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/searchBar"
         style="@style/Base.Theme.MaterialComponents.SearchBar"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:focusable="true"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/itemWeekendOffers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,6 +69,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/offers_cardview_background"
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
@@ -106,20 +107,22 @@
             android:id="@+id/giftImage"
             android:layout_width="64dp"
             android:layout_height="64dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_gift"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/beerList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layoutManager="LinearLayoutManager"
+        android:background="@color/surfaceColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
