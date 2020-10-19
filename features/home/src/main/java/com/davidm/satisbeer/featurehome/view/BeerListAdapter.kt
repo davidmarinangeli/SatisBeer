@@ -12,50 +12,25 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.davidm.satisbeer.featurehome.data.Beer
 import com.davidm.satisbeer.featurehome.databinding.ItemBeerListBinding
-import com.davidm.satisbeer.featurehome.databinding.ItemWeekendOffersBinding
 import com.google.android.material.textview.MaterialTextView
 import com.squareup.picasso.Picasso
 
-class BeerListAdapter : PagingDataAdapter<Beer, RecyclerView.ViewHolder>(diffUtilCallBack) {
+class BeerListAdapter : PagingDataAdapter<Beer, ListItemViewHolder>(diffUtilCallBack) {
 
-    private val WEEKEND_OFFER_TYPE = 0
-    private val LIST_ITEM_TYPE = 1
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemViewHolder {
 
-        return when (viewType) {
-            WEEKEND_OFFER_TYPE -> {
-                val binding =
-                    ItemWeekendOffersBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                WeekendOfferViewHolder(binding)
-            }
-            else -> {
-                val binding =
-                    ItemBeerListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                ListItemViewHolder(binding)
-            }
-        }
+        val binding =
+            ItemBeerListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ListItemViewHolder(binding)
     }
 
-    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-        if (getItemViewType(position) == LIST_ITEM_TYPE) {
-            (viewHolder as ListItemViewHolder).bind(getItem(position) ?: return)
-        }
+    override fun onBindViewHolder(viewHolder: ListItemViewHolder, position: Int) {
+        viewHolder.bind(getItem(position) ?: return)
     }
 
     companion object {
         private val diffUtilCallBack = DiffUtilCallBack()
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return when (position) {
-            0 -> WEEKEND_OFFER_TYPE
-            else -> LIST_ITEM_TYPE
-        }
     }
 }
 
@@ -87,8 +62,6 @@ class ListItemViewHolder(view: ItemBeerListBinding) : RecyclerView.ViewHolder(vi
         beerButton.setOnClickListener { showBottomSheet(this.itemView.context, beer) }
     }
 }
-
-class WeekendOfferViewHolder(view: ItemWeekendOffersBinding) : RecyclerView.ViewHolder(view.root)
 
 class DiffUtilCallBack : DiffUtil.ItemCallback<Beer>() {
 

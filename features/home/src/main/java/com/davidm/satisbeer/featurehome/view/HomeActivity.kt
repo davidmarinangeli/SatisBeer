@@ -14,7 +14,6 @@ import com.davidm.satisbeer.featurehome.databinding.ActivityHomeBinding
 import com.davidm.satisbeer.uicomponents.CustomDividerDecoration
 import dagger.android.AndroidInjection
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -53,12 +52,12 @@ class HomeActivity : AppCompatActivity() {
         )
         recyclerView.adapter = homeAdapter
 
-        lifecycleScope.launch {
-            homeViewModel.getBeerList()?.collectLatest { pagingData ->
-                homeAdapter.submitData(pagingData)
-                //TODO: hide loading
+
+        homeViewModel.livePagedListInternal?.observe(this@HomeActivity, {
+            lifecycleScope.launch {
+                homeAdapter.submitData(it)
             }
-        }
+        })
 
         homeAdapter.addLoadStateListener { loadState ->
 

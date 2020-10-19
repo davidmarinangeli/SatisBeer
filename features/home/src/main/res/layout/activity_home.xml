@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layoutDescription="@xml/activity_home_scene"
     tools:context=".view.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/appBarToolbar"
@@ -34,35 +38,93 @@
                 android:text="@string/box_toolbar_title" />
         </com.google.android.material.appbar.MaterialToolbar>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchBar"
-                style="@style/Base.Theme.MaterialComponents.SearchBar"
-                android:layout_width="match_parent"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/searchBar"
+        style="@style/Base.Theme.MaterialComponents.SearchBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:focusable="true"
+        android:hint="@string/search"
+        android:inputType="text"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+
+    <LinearLayout
+        android:id="@+id/itemWeekendOffers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/offers_cardview_background"
+        android:orientation="horizontal"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBar">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/weekendOffersTitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
-                android:focusable="true"
-                android:hint="@string/search"
-                android:inputType="text"
-                android:maxLines="1"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/transparent"
+                android:text="@string/weekend_offers_title_text"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toStartOf="@+id/giftImage"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/weekendOffersSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@android:color/transparent"
+                android:text="@string/weekend_offer_subtitle_text"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/giftImage"
+                app:layout_constraintStart_toStartOf="@+id/weekendOffersTitle"
+                app:layout_constraintTop_toBottomOf="@+id/weekendOffersTitle" />
+
         </LinearLayout>
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <ImageView
+            android:id="@+id/giftImage"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_gift"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/beerList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layoutManager="LinearLayoutManager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemWeekendOffers"
         tools:itemCount="5"
         tools:listitem="@layout/item_beer_list" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
