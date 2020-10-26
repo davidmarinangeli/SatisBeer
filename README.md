@@ -5,7 +5,7 @@
 Satisbeer is an Android app in **Kotlin** that I developed for the tech test in Satispay. 
 There are two branches:
 1. master - the main one in which there is the completed challenge.
-2. extra - another one based on master where I'm trying to make the app work with Android Jetpack Paging 3 (not choosen in the master version because in alpha) and Motion Layout.
+2. extra - another one based on master where I'm trying to make the app work with Android Jetpack Paging 3 (not choosen in the master version because in alpha) and Motion Layout. Not meant to be evaluated.
 
 ## What does it do? 🤔
 The app fetches Beers from [Punk API](https://punkapi.com/documentation/v2) and displays them through a **pagedList** that gets 25 items per call. The app supports names searching, and the item can be clicked through the "More Info" button and this inflates a Bottom Sheet with more info about that specific beer.
