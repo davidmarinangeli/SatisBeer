@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/activityBackgroundColor"
     app:layoutDescription="@xml/activity_home_scene"
     tools:context=".view.HomeActivity">
 
@@ -59,9 +60,9 @@
         android:id="@+id/itemWeekendOffers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:background="@drawable/offers_cardview_background"
         android:orientation="horizontal"
-        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchBar">
@@ -100,7 +101,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/giftImage"
                 app:layout_constraintStart_toStartOf="@+id/weekendOffersTitle"
                 app:layout_constraintTop_toBottomOf="@+id/weekendOffersTitle" />
-
         </LinearLayout>
 
         <ImageView
@@ -117,16 +117,37 @@
             app:layout_constraintTop_toTopOf="parent" />
     </RelativeLayout>
 
+    <HorizontalScrollView
+        android:id="@+id/beerChipGroupContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemWeekendOffers">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/beerCategoriesChipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            app:singleLine="true"
+            app:singleSelection="true" />
+    </HorizontalScrollView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/beerList"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/beerlist_background"
+        android:elevation="1dp"
         app:layoutManager="LinearLayoutManager"
-        android:background="@color/surfaceColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemWeekendOffers"
+        app:layout_constraintTop_toBottomOf="@+id/beerChipGroupContainer"
         tools:itemCount="5"
         tools:listitem="@layout/item_beer_list" />
 

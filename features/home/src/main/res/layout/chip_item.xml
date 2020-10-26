@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip android:id="@+id/beerChip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    tools:text="Lager"
+    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+    android:textColor="@drawable/chip_text_color"
+    app:chipBackgroundColor="@drawable/chip_background"
+    style="@style/Widget.MaterialComponents.Chip.Choice"
+    app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" />

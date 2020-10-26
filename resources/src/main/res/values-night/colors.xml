@@ -5,5 +5,6 @@
     <color name="primaryDarkColor">#c48000</color>
     <color name="primaryTextColor">#0e181c</color>
     <color name="surfaceColor">#0E181C</color>
+    <color name="activityBackgroundColor">#171717</color>
     <color name="colorOnSurface">@android:color/white</color>
 </resources>

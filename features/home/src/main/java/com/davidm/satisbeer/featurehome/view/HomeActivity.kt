@@ -9,8 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import com.davidm.satisbeer.featurehome.R
+import com.davidm.satisbeer.featurehome.data.generateChipList
 import com.davidm.satisbeer.featurehome.databinding.ActivityHomeBinding
 import com.davidm.satisbeer.uicomponents.CustomDividerDecoration
+import com.google.android.material.chip.Chip
 import dagger.android.AndroidInjection
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -42,6 +45,7 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
         val recyclerView = binding.beerList
+        val chipGroup = binding.beerCategoriesChipGroup
         val homeAdapter = BeerListAdapter()
 
         recyclerView.addItemDecoration(
@@ -51,12 +55,29 @@ class HomeActivity : AppCompatActivity() {
         )
         recyclerView.adapter = homeAdapter
 
+        generateChipList().forEachIndexed { index, it ->
+            val chip = layoutInflater.inflate(R.layout.chip_item, chipGroup, false) as Chip
+            chip.text = it
+            chip.id = index
+            chip.isCheckable = true
+            chipGroup.addView(chip)
 
-        homeViewModel.livePagedListInternal?.observe(this@HomeActivity, {
+        }
+
+        homeViewModel.mutableLiveData.observe(this@HomeActivity, {
             lifecycleScope.launch {
                 homeAdapter.submitData(it)
             }
         })
+
+        chipGroup.setOnCheckedChangeListener { group, checkedId ->
+            val chip = group.getChildAt(checkedId)
+            if (chip != null) {
+                homeViewModel.searchForBeer((chip as Chip).text.toString())
+            } else {
+                homeViewModel.searchForBeer("")
+            }
+        }
 
         homeAdapter.addLoadStateListener { loadState ->
 
@@ -66,7 +87,6 @@ class HomeActivity : AppCompatActivity() {
             //TODO: show loading
             else {
                 //TODO: hide loading
-
 
                 // If we have an error, show a toast
                 val errorState = when {

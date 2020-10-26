@@ -1,6 +1,7 @@
 package com.davidm.satisbeer.featurehome.view
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.paging.Pager
@@ -25,35 +26,44 @@ class HomeViewModel @Inject constructor(
     private val dispatchers: Dispatchers
 ) : ViewModel() {
 
-    var livePagedListInternal: LiveData<PagingData<Beer>>? = null
+    val mutableLiveData = MutableLiveData<PagingData<Beer>>()
+    private var liveData: LiveData<PagingData<Beer>>? = null
+    private val observer = { item: PagingData<Beer> -> mutableLiveData.value = item }
 
     private val scopeViewModel = CoroutineScope(SupervisorJob() + dispatchers.main)
 
     init {
-        searchForBeer()
+        initBeerList()
     }
 
-    fun searchForBeer(beerName: String? = null) {
+    fun initBeerList() {
+        searchForBeer("")
+    }
+
+    fun searchForBeer(beerName: String) {
         val formattedBeerName = beerName
-            ?.ifBlank { null }
+            .ifBlank { null }
             ?.replace(" ", "_")
             ?.toLowerCase(Locale.getDefault())
 
         val dataSourceFactory = createDataSourceForBeers(formattedBeerName)
+        liveData?.removeObserver(observer)
+        liveData = dataSourceFactory.flow.asLiveData().cachedIn(scopeViewModel)
 
-        livePagedListInternal = dataSourceFactory.flow.asLiveData().cachedIn(scopeViewModel)
+        liveData?.observeForever(observer)
     }
 
     private fun createDataSourceForBeers(beerName: String? = null): Pager<Int, Beer> {
         return Pager(PagingConfig(pageSize = PAGE_SIZE), pagingSourceFactory = {
             BeerListDataSource(
-                scopeViewModel, homeRepository, dispatchers, beerName
+                homeRepository, dispatchers, beerName
             )
         })
     }
 
     override fun onCleared() {
         scopeViewModel.cancel()
+        liveData?.removeObserver(observer)
         super.onCleared()
     }
 

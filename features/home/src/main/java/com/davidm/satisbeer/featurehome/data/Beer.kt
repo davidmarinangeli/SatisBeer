@@ -65,8 +65,13 @@ fun convertFoodPairingList(foodPairing: List<String>): String {
     return foodPairingList
 }
 
-fun getDummyBeer(): Beer {
-    return Beer(
-        -1, 0.0, "", "", "", "", emptyList(), "", "", ""
-    )
+fun generateChipList(): List<String> {
+    val lagerBeer = "Lager"
+    val blondeBeer = "Blonde"
+    val maltsBeer = "Malts"
+    val stoutsPortersBeer = "Stouts"
+    val ipaBeer = "Ipa"
+
+    return listOf(lagerBeer, blondeBeer, maltsBeer, stoutsPortersBeer, ipaBeer)
+
 }

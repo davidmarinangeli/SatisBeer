@@ -2,7 +2,6 @@ package com.davidm.satisbeer.featurehome.view
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.davidm.satisbeer.featurehome.data.Beer
-import com.davidm.satisbeer.featurehome.data.getDummyBeer
 import com.davidm.satisbeer.featurehome.repository.HomeRepository
 import com.davidm.satisbeer.featurehome.testutils.CoroutineTestRule
 import com.davidm.satisbeer.featurehome.testutils.getOrAwaitValue
@@ -43,19 +42,6 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun searchBeerNullQuery() {
-        val nullQueryResult = generateBeerList()
-        coEvery { homeRepository.retrieveBeers(any(), any(), null) } returns nullQueryResult
-
-        homeViewModel.searchForBeer(null)
-
-        val result = homeViewModel.getBeerList().getOrAwaitValue()
-
-        assert(result.minus(getDummyBeer()) == nullQueryResult)
-        coVerify { homeRepository.retrieveBeers(any(), any(), null) }
-    }
-
-    @Test
     fun searchBeerEmptyQuery() {
         val nullQueryResult = generateBeerList()
         coEvery { homeRepository.retrieveBeers(any(), any(), null) } returns nullQueryResult
@@ -64,29 +50,28 @@ class HomeViewModelTest {
         homeViewModel.searchForBeer("")
 
         coVerify { homeRepository.retrieveBeers(any(), any(), null) }
-        val result = homeViewModel.getBeerList().getOrAwaitValue()
 
-        assert(result.minus(getDummyBeer()) == nullQueryResult)
+        assert(homeViewModel.mutableLiveData.getOrAwaitValue() == nullQueryResult)
 
         // blank
         homeViewModel.searchForBeer(" ")
         coVerify { homeRepository.retrieveBeers(any(), any(), null) }
 
-        val result2 = homeViewModel.getBeerList().getOrAwaitValue()
-        assert(result2.minus(getDummyBeer()) == nullQueryResult)
+        assert(homeViewModel.mutableLiveData.getOrAwaitValue() == nullQueryResult)
     }
 
     @Test
     fun searchBeerRealQuery() {
+        // init test
         val queryResult = generateBeerList()
         val query = "blonde"
         coEvery { homeRepository.retrieveBeers(any(), any(), query) } returns queryResult
 
+        // exec
         homeViewModel.searchForBeer(query)
 
-        val result = homeViewModel.getBeerList().getOrAwaitValue()
-
-        assert(result.minus(getDummyBeer()) == queryResult)
+        // assert the result
+        assert(homeViewModel.mutableLiveData.getOrAwaitValue() == queryResult)
         coVerify { homeRepository.retrieveBeers(any(), any(), query) }
     }
 
@@ -100,28 +85,23 @@ class HomeViewModelTest {
         coEvery { homeRepository.retrieveBeers(any(), any(), "brown") } returns brownResult
         coEvery { homeRepository.retrieveBeers(any(), any(), null) } returns nullResult
 
-        homeViewModel.searchForBeer(null)
-        val viewModelNullResult = homeViewModel.getBeerList().getOrAwaitValue()
-        assert(viewModelNullResult.minus(getDummyBeer()) == nullResult)
+        homeViewModel.searchForBeer(" ")
+        assert(homeViewModel.mutableLiveData.getOrAwaitValue() == nullResult)
 
         // brown tests
         homeViewModel.searchForBeer("brown")
-        val viewModelBrownResult = homeViewModel.getBeerList().getOrAwaitValue()
-        assert(viewModelBrownResult.minus(getDummyBeer()) == brownResult)
+        assert(homeViewModel.mutableLiveData.getOrAwaitValue() == brownResult)
 
         // blonde tests
-        val viewModelBlondeResult = homeViewModel.getBeerList().getOrAwaitValue()
-
         homeViewModel.searchForBeer("blonde")
-        assert(viewModelBlondeResult.minus(getDummyBeer()) == brownResult)
+        assert(homeViewModel.mutableLiveData.getOrAwaitValue() == brownResult)
 
         homeViewModel.searchForBeer("BLONDE")
-        assert(viewModelBlondeResult.minus(getDummyBeer()) == brownResult)
+        assert(homeViewModel.mutableLiveData.getOrAwaitValue() == brownResult)
 
         // empty tests
         homeViewModel.searchForBeer("")
-        val viewModelEmptyResult = homeViewModel.getBeerList().getOrAwaitValue()
-        assert(viewModelEmptyResult.minus(getDummyBeer()) == nullResult)
+        assert(homeViewModel.mutableLiveData.getOrAwaitValue() == nullResult)
     }
 
     /**
