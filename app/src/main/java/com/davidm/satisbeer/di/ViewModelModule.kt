@@ -6,12 +6,14 @@ import dagger.Binds
 import dagger.MapKey
 import dagger.Module
 import dagger.multibindings.IntoMap
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 import javax.inject.Provider
 import kotlin.reflect.KClass
 
 @Module
 @Suppress("UNUSED")
+@ExperimentalCoroutinesApi
 abstract class ViewModelModule {
 
     @Binds
